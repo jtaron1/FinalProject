@@ -1,27 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Feeds Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
 
 
   <% if !params[:search] %>
 
     <% @feeds_users.each do |feeds_user| %>
-
+        <% Feedjira::Feed.add_common_feed_element 'image' %>
         <% current_feed = Feedjira::Feed.fetch_and_parse(Feed.find_by_feed_id(feeds_user.feed_id).url) %>
         <h1><%= current_feed.title %></h1>
 
-          <% if(!current_feed.image.nil?) %>
-              <h2><img src='<%= current_feed.image.split(' ').first %>'></h2>
-          <% end %>
+        <% if(!current_feed.image.nil?) %>
+            <h2><img src='<%= current_feed.image.split(' ').first %>'></h2>
+        <% end %>
         <% current_article = current_feed.entries %>
         <% current_article[1..5].each do |article| %>
             Title:<%= article.title %>  <br/>
@@ -39,7 +29,8 @@
 
 
     <% else %>
-      <% @feeds_users.each do |article| %>
+      <% @returned_articles.each do |article| %>
+
           <h3><%= article.title %></h3>
           <a href="<%=article.url%>">Read full article</a>
           <p><%=
