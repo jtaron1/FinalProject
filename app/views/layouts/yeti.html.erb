@@ -36,7 +36,9 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li> <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> </li>
-            </ul>
+            <li><%= link_to "Add Feed", new_feeds_user_path %></li>
+          </ul>
+
           <ul class="nav navbar-nav navbar-right" style="padding-top:5px">
             <li>   <%= form_tag(feeds_users_path, :method => "get", id: "search-form") do %>
                   <div class="input-append">

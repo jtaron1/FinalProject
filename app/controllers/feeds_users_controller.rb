@@ -83,6 +83,7 @@ class FeedsUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feeds_user_params
-      params[:feeds_user]
+      params[:feeds_user].permit(:feed_id, :user_id)
+
     end
 end
