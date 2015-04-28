@@ -13,10 +13,10 @@ class FeedsUsersController < ApplicationController
         current_feed = Feedjira::Feed.fetch_and_parse(Feed.find_by_feed_id(feeds_user.feed_id).url)
         current_article = current_feed.entries
         current_article[1..5].each do |item|
-            @t = Title.new(:title => item.title, :link => item.url, :summary => item.summary)
+            @t = Title.new(:title => item.title, :url => item.url, :summary => item.summary)
             @t.save
         end end
-      @feeds_users = Title.search(params[:search])
+      @returned_articles = Title.search(params[:search])
     end
 
   end
