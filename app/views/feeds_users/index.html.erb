@@ -19,31 +19,19 @@
             Summary: <%= strip_tags(article.summary) %> <br/>
             <%= link_to "Read full article", article.url %><br/><br/>
         <% end %>
-        <!--hi-->
-
-        <span><%= link_to 'Show', feeds_user %></span>
-          <span> <%= link_to 'Edit', edit_feeds_user_path(feeds_user) %></span>
-       <span> <%= link_to 'Destroy', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+    <span> <%= link_to 'Show More Articles', feeds_user %>   </span>
+    <span>   <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
 
     <% end %>
 
 
-    <% else %>
-      <% @returned_articles.each do |article| %>
-
-          <h3><%= article.title %></h3>
-          <a href="<%=article.url%>">Read full article</a>
-          <p><%=
-              strip_tags(article.summary)
-          %></p>
-      <% end %>
-
+  <% else %>
+    <% @returned_articles.each do |article| %>
+        <h3><%= article.title %></h3>
+        <%= link_to "Read full article", article.url %>
+        <p><%= strip_tags(article.summary) %></p>
     <% end %>
 
+  <% end %>
 
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Feeds user', new_feeds_user_path %>
