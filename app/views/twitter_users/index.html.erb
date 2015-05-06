@@ -2,22 +2,26 @@
 
 
 
-
+    <% all_tweets = [] %>
 
     <% @twitter_users.each do |twitter_user| %>
 
         <h1><%=twitter_user.twitter_id %></h1>
         <ul>
             <% @client.user_timeline(twitter_user.twitter_id)[1..5].each  do |tweet|  %>
-
+            <% all_tweets.push(twitter_user.twitter_id + ": " + tweet.full_text) %>
                 <% text, uri = tweet.full_text.split('http://') %>
                 <li><%=text%><%=link_to uri, uri %></li>
 
             <% end %>
         </ul>
-    <%= link_to 'Destroy', twitter_user, method: :delete, data: { confirm: 'Are you sure?' } %>
-
+        <%= link_to 'Destroy', twitter_user, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
+
+    <% all_tweets.shuffle!.each do |tweet| %>
+        <li><%= tweet %></li>
+    <% end %>
+
 
 
 
