@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+
+    <% @twitter_users.each do |twitter_user| %>
+
+        <h1><%=twitter_user.twitter_id %></h1>
+        <ul>
+            <% @client.user_timeline(twitter_user.twitter_id)[1..5].each  do |tweet|  %>
+
+                <% text, uri = tweet.full_text.split('http://') %>
+                <li><%=text%><%=link_to uri, uri %></li>
+
+            <% end %>
+        </ul>
+    <%= link_to 'Destroy', twitter_user, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <% end %>
+
+
+
+<br>
+
+<%= link_to 'Follow another twitter user', new_twitter_user_path %>
