@@ -36,7 +36,10 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li> <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> </li>
+
             <li><%= link_to "Add Feed", new_feeds_user_path %></li>
+            <li><%= link_to "News", '/' %></li>
+            <li><%= link_to "Twitter", twitter_users_path%></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right" style="padding-top:5px">

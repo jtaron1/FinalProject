@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'twitter'
 gem 'feedjira'
 gem 'rails_admin'
 gem 'execjs', '2.3.0'

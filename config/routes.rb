@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :twitter_users
+
   resources :feeds_users
 
   resources :feeds
