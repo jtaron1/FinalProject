@@ -42,7 +42,7 @@ class FeedsUsersController < ApplicationController
 
     respond_to do |format|
       if @feeds_user.save
-        format.html { redirect_to @feeds_user, notice: 'Feeds user was successfully created.' }
+        format.html { redirect_to feeds_users_path, notice: 'Feeds user was successfully created.' }
         format.json { render :show, status: :created, location: @feeds_user }
       else
         format.html { render :new }

@@ -6,6 +6,7 @@
 
     <% @feeds_users.each do |feeds_user| %>
         <% Feedjira::Feed.add_common_feed_element 'image' %>
+
         <% current_feed = Feedjira::Feed.fetch_and_parse(Feed.find_by_feed_id(feeds_user.feed_id).url) %>
         <h1><%= current_feed.title %></h1>
 
@@ -16,7 +17,8 @@
         <% current_article[1..5].each do |article| %>
             Title:<%= article.title %>  <br/>
             Date: <%= article.published %> <br/>
-            Summary: <%= strip_tags(article.summary) %> <br/>
+            Summary: <%= sanitize strip_tags(article.summary) %> <br/>
+
             <%= link_to "Read full article", article.url %><br/><br/>
         <% end %>
     <span> <%= link_to 'Show More Articles', feeds_user %>   </span>
