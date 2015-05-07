@@ -7,20 +7,42 @@
     <% @feeds_users.each do |feeds_user| %>
         <% Feedjira::Feed.add_common_feed_element 'image' %>
 
+
+        <div class="page-header">
+
+
         <% current_feed = Feedjira::Feed.fetch_and_parse(Feed.find_by_feed_id(feeds_user.feed_id).url) %>
         <h1><%= current_feed.title %></h1>
+
 
         <% if(!current_feed.image.nil?) %>
             <h2><img src='<%= current_feed.image.split(' ').first %>'></h2>
         <% end %>
+        </div>
+        <div class="row">
+
+
         <% current_article = current_feed.entries %>
-        <% current_article[1..5].each do |article| %>
-            Title:<%= article.title %>  <br/>
+        <% current_article[1..6].each do |article| %>
+              <div class="col-sm-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+
+                  <h3 class="panel-title">    Title:<%= article.title %> </h3> <br/>
             Date: <%= article.published %> <br/>
+                    </div>
+                    <div class="panel-body">
+
+
             Summary: <%= sanitize strip_tags(article.summary) %> <br/>
 
             <%= link_to "Read full article", article.url %><br/><br/>
+                    </div>
+                </div>
+                </div>
+
         <% end %>
+        </div>
     <span> <%= link_to 'Show More Articles', feeds_user %>   </span>
     <span>   <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
 
