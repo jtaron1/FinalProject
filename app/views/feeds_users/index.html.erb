@@ -35,17 +35,20 @@
 
 
             Summary: <%= sanitize strip_tags(article.summary) %> <br/>
-
+                      <button type="button" class="btn btn-xs btn-default">
             <%= link_to "Read full article", article.url %><br/><br/>
+                      </button>
                     </div>
                 </div>
                 </div>
 
         <% end %>
         </div>
-    <span> <%= link_to 'Show More Articles', feeds_user %>   </span>
-    <span>   <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-
+        <button type="button" class="btn btn-xs btn-default">
+    <span> <%= link_to 'Show More Articles', feeds_user %>   </span></button>
+        <button type="button" class="btn btn-xs btn-default">
+          <span>   <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+        </button>
     <% end %>
 
 
