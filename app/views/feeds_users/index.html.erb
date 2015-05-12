@@ -25,16 +25,16 @@
         <% current_article = current_feed.entries %>
         <% current_article[1..6].each do |article| %>
               <div class="col-sm-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                   <div class="panel-heading">
 
-                  <h3 class="panel-title">    Title:<%= article.title %> </h3> <br/>
+                  <h3 class="panel-title">    <%= article.title %> </h3> <br/>
             Date: <%= article.published %> <br/>
                     </div>
                     <div class="panel-body">
 
 
-            Summary: <%= sanitize strip_tags(article.summary) %> <br/>
+            <%= sanitize strip_tags(article.summary) %> <br/>
 
             <%= link_to "Read full article", article.url %><br/><br/>
 
@@ -44,9 +44,9 @@
 
         <% end %>
         </div>
-        <button type="button" class="btn btn-xs btn-default">
+        <button type="button" class="btn btn btn-default">
     <span> <%= link_to 'Show More Articles', feeds_user %>   </span></button>
-        <button type="button" class="btn btn-xs btn-default">
+        <button type="button" class="btn btn btn-default">
           <span>   <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
         </button>
     <% end %>
