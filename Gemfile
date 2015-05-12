@@ -26,7 +26,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'omniauth-twitter'
 gem 'rails_autolink'
 
 gem 'twitter-bootswatch-rails', :github=>'scottvrosenthal/twitter-bootswatch-rails'
