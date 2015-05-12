@@ -20,7 +20,7 @@
 
 
 
-              <li><%=tweet.full_text%></li>
+              <li><%=auto_link tweet.full_text%></li>
                   </div>
                 </div>
               </div></div>
@@ -34,7 +34,7 @@
     <% end %>
 
     <% all_tweets.shuffle!.each do |tweet| %>
-        <li><%= tweet %></li>
+        <li><%= auto_link tweet %></li>
     <% end %>
 
 
