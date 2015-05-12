@@ -1,17 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-
-
     <% all_tweets = [] %>
 
     <% @twitter_users.each do |twitter_user| %>
 
         <h1><%=twitter_user.twitter_id %></h1>
         <ul>
-            <% @client.user_timeline(twitter_user.twitter_id)[1..5].each  do |tweet|  %>
+            <% @client.user_timeline(twitter_user.twitter_id)[0..4].each  do |tweet|  %>
             <% all_tweets.push(twitter_user.twitter_id + ": " + tweet.full_text) %>
-                <% text, uri = tweet.full_text.split('http://') %>
-                <li><%=text%><%=link_to uri, uri %></li>
+
+                <li><%=auto_link tweet.full_text%></li>
 
             <% end %>
         </ul>
@@ -19,7 +17,7 @@
     <% end %>
 
     <% all_tweets.shuffle!.each do |tweet| %>
-        <li><%= tweet %></li>
+        <li><%= auto_link tweet %></li>
     <% end %>
 
 
