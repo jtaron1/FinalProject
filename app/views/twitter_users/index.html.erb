@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 <% @all_tweets.each do |tweet| %>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
-            <div class="panel panel-primary">
-                    <div class="panel-heading">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <%=tweet[:id] %>
+        </div>
 
-                      <%=tweet[:id] %></div>
-              <span><img src="https://g.twimg.com/dev/documentation/image/favorite_on.png"> <%=tweet[:fav_count] %></span>
+        <span><img src="https://g.twimg.com/dev/documentation/image/favorite_on.png"> <%=tweet[:fav_count] %></span>
+        <span><img src="https://g.twimg.com/dev/documentation/image/retweet_on.png"> <%=tweet[:rt_count] %></span>
                     <div class="panel-body" style="min-height: 130px; max-height: 130px;" ><%=auto_link tweet[:tweet] %></div>
             </div>
         </div>

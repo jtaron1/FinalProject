@@ -20,7 +20,7 @@ class TwitterUsersController < ApplicationController
      twitter_users.each do |twitter_user|
 
       @client.user_timeline(twitter_user.twitter_id)[0..10].each  do |tweet|
-        @all_tweets.push(id:twitter_user.twitter_id, tweet:tweet.full_text, fav_count:tweet.favorite_count)
+        @all_tweets.push(id:twitter_user.twitter_id, tweet:tweet.full_text, fav_count:tweet.favorite_count, rt_count:tweet.retweet_count)
       end
 
      end
