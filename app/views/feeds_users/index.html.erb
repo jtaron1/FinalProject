@@ -23,24 +23,29 @@
 
 
         <% current_article = current_feed.entries %>
-        <% current_article[1..6].each do |article| %>
-              <div class="col-sm-4">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
+        <% current_article[0..11].each do |article| %>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="span4" >
+                <div class="panel panel-primary ">
 
-                  <h3 class="panel-title">    <%= article.title %> </h3> <br/>
-            Date: <%= article.published %> <br/>
-                    </div>
-                    <div class="panel-body">
+                      <div class="panel-heading" style="min-height: 115px; max-height: 115px;">
+
+                      <h3 class="panel-title">
+                        <%= article.title.titleize %>
+                      </h3>
+                        <br/>
+                        Date: <%= article.published.strftime("%B %d, %Y") %> <br/>
+                      </div>
+                      <div class="panel-body" style="min-height: 220px; max-height: 220px;">
 
 
-            <%= sanitize strip_tags(article.summary) %> <br/>
+                        <%= sanitize strip_tags(article.summary[0..250]) %>... <br/>
 
-            <%= link_to "Read full article", article.url %><br/><br/>
-
+                        <%= link_to "Read full article", article.url %><br/><br/>
+                      </div>
                     </div>
                 </div>
-                </div>
+              </div>
 
         <% end %>
         </div>
@@ -54,9 +59,23 @@
 
   <% else %>
     <% @returned_articles.each do |article| %>
-        <h3><%= article.title %></h3>
-        <%= link_to "Read full article", article.url %>
-        <p><%= strip_tags(article.summary) %></p>
+        <div class="col-sm-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading" style="min-height: 115px; max-height: 115px;">
+
+              <h3 class="panel-title">    <b><%= article.title %> </b></h3> <br/>
+              Date: <%= article.published %> <br/>
+            </div>
+            <div class="panel-body" style="min-height: 220px; max-height: 220px;">
+
+
+              <%= sanitize strip_tags(article.summary) %> <br/>
+
+              <%= link_to "Read full article", article.url %><br/><br/>
+
+            </div>
+          </div>
+        </div>
     <% end %>
 
   <% end %>

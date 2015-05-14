@@ -13,7 +13,18 @@ class TwitterUsersController < ApplicationController
     end
 
 
-    @twitter_users = TwitterUser.where(user_id: current_user)
+    twitter_users = TwitterUser.where(user_id: current_user)
+
+    @all_tweets = []
+
+     twitter_users.each do |twitter_user|
+
+      @client.user_timeline(twitter_user.twitter_id)[0..10].each  do |tweet|
+        @all_tweets.push(id:twitter_user.twitter_id, tweet:tweet.full_text, fav_count:tweet.favorite_count)
+      end
+
+     end
+    @all_tweets.shuffle!
   end
 
   # GET /twitter_users/1

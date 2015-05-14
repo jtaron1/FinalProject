@@ -1,45 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-
-
-    <% all_tweets = [] %>
-
-    <% @twitter_users.each do |twitter_user| %>
-    <div class="page-header">
-        <h1><%=twitter_user.twitter_id %></h1>
-        <ul>
-
-            <% @client.user_timeline(twitter_user.twitter_id)[1..5].each  do |tweet|  %>
-              <div class="row">
-                <div class="col-sm-4">
-                  <h3 class="panel-title">  <% all_tweets.push(twitter_user.twitter_id + ": " + tweet.full_text) %></h3>
-
-                  <div class="panel panel-primary">
+<% @all_tweets.each do |tweet| %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
+            <div class="panel panel-primary">
                     <div class="panel-heading">
 
+                      <%=tweet[:id] %></div>
+              <span><img src="https://g.twimg.com/dev/documentation/image/favorite_on.png"> <%=tweet[:fav_count] %></span>
+                    <div class="panel-body" style="min-height: 130px; max-height: 130px;" ><%=auto_link tweet[:tweet] %></div>
+            </div>
+        </div>
 
-
-
-              <li><%=auto_link tweet.full_text%></li>
-                  </div>
-                </div>
-              </div></div>
-
-            <% end %>
-        </ul>
     </div>
-    <button type="button" class="btn btn btn-default">
-      <span><%= link_to 'Destroy', twitter_user, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </span></button>
-    <% end %>
-
-    <% all_tweets.shuffle!.each do |tweet| %>
-        <li><%= auto_link tweet %></li>
-    <% end %>
+<% end %>
+<span><%= link_to 'Follow another twitter user', new_twitter_user_path %></span>
 
 
 
-
-<br>
-<button type="button" class="btn btn btn-default">
-<span><%= link_to 'Follow another twitter user', new_twitter_user_path %></span></button>
+</div>
