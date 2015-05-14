@@ -11,17 +11,22 @@
         <div class="panel-heading">
           @<%=tweet[:id] %>
         </div>
-
-        <span><img src="https://g.twimg.com/dev/documentation/image/favorite_on.png"> <%=tweet[:fav_count] %></span>
-        <span><img src="https://g.twimg.com/dev/documentation/image/retweet_on.png"> <%=tweet[:rt_count] %></span>
-                    <div class="panel-body" style="min-height: 130px; max-height: 130px;" ><%=auto_link tweet[:tweet] %></div>
-            </div>
+        <span>
+          <img src="https://g.twimg.com/dev/documentation/image/favorite_on.png">
+          <%=tweet[:fav_count] %>
+        </span>
+        <span>
+          <img src="https://g.twimg.com/dev/documentation/image/retweet_on.png">
+          <%=tweet[:rt_count] %>
+        </span>
+        <div class="panel-body" style="min-height: 130px; max-height: 130px;" >
+          <%=auto_link tweet[:tweet] %>
         </div>
-
+      </div>
     </div>
+
 <% end %>
-<span></span>
 
 
 
-</div>
+
