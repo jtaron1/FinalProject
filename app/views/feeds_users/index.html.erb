@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<div class="btn-group">
+  <%= link_to 'Add New Article', new_feeds_user_path, :class => "btn btn-default" %></a>
 
+</div>
 
   <% if !params[:search] %>
 
@@ -49,11 +52,11 @@
 
         <% end %>
         </div>
-        <button type="button" class="btn btn btn-default">
-    <span> <%= link_to 'Show More Articles', feeds_user %>   </span></button>
-        <button type="button" class="btn btn btn-default">
-          <span>   <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-        </button>
+
+        <div class="btn-group">
+            <%= link_to 'Show More Articles', feeds_user, :class => "btn btn-default" %></a>
+            <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default" %>
+        </div>
     <% end %>
 
 
