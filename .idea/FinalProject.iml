@@ -138,7 +138,7 @@
     <orderEntry type="library" scope="PROVIDED" name="binding_of_caller (v0.7.2, rbenv: 2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="buftok (v0.2.0, rbenv: 2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, rbenv: 2.1.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.8.0.pre, rbenv: 2.1.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.12, rbenv: 2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v4.0.5, rbenv: 2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.1.0, rbenv: 2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, rbenv: 2.1.5) [gem]" level="application" />
