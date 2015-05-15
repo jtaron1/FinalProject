@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20150515111919) do
   end
 
   create_table "titles", force: :cascade do |t|
-    t.text "title"
-    t.text "url"
-    t.text "published"
-    t.text "summary"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
+    t.string   "title"
+    t.string   "url"
+    t.string   "published"
+    t.string   "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "twitter_handles", force: :cascade do |t|
