@@ -4,7 +4,24 @@ class FeedsUsersController < ApplicationController
   # GET /feeds_users
   # GET /feeds_users.json
   def index
-    @feeds_users = FeedsUser.where(user_id: current_user)
+    feeds = FeedsUser.where(user_id: current_user)
+
+    @feeds_users = []
+
+    feeds.each do |feeds_user|
+      current_feed = Feedjira::Feed.fetch_and_parse(Feed.find_by_feed_id(feeds_user.feed_id).url)
+       if(!current_feed.image.nil?)
+        img = current_feed.image.split(' ').first
+       end
+      current_article = current_feed.entries
+      current_article[0..11].each do |item|
+        @feeds_users.push(:title => item.title, :url => item.url, :summary => item.summary, :published => item.published, :img_link => img)
+
+      end
+    end
+    @feeds_users.shuffle!
+
+
 
     Title.delete_all
 
@@ -15,7 +32,8 @@ class FeedsUsersController < ApplicationController
         current_article[0..11].each do |item|
             @t = Title.new(:title => item.title, :url => item.url, :summary => item.summary, :published => item.published)
             @t.save
-        end end
+        end
+      end
       @returned_articles = Title.search(params[:search])
     end
 

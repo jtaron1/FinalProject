@@ -1,62 +1,47 @@
 <p id="notice"><%= notice %></p>
 
+<ul class="nav navbar-nav navbar-right" style="padding-top:5px">
+  <li>   <%= form_tag(feeds_users_path, :method => "get", id: "search-form") do %>
+        <div class="input-append">
+          <%= text_field_tag :search, params[:search], placeholder: "Search Articles" %>
+          <button type="submit" class="btn-group btn-group-xs">Search</button>
+        </div>
+    <% end %>
+  </li>
+</ul>
+
+
 <div class="btn-group">
   <%= link_to 'Add New Article', new_feeds_user_path, :class => "btn btn-default" %></a>
 
-</div>
+</div><br/><br/>
 
   <% if !params[:search] %>
 
-    <% @feeds_users.each do |feeds_user| %>
-        <% Feedjira::Feed.add_common_feed_element 'image' %>
+    <% @feeds_users.each do |feed| %>
+        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading" style="border:none; box-shadow:none; min-height: 115px; max-height: 115px;">
+              <img src='<%=feed[:img_link] %>' class="pull-left" style="height:35px; width:35%" >
+                <div class="clearfix"></div>
+              <h3 class="panel-title pull-right">
+                <%= feed[:title].titleize %>
+              </h3>
+              <br/>
+             <span class="pull-right"><%= feed[:published].strftime("%B %d, %Y") %> </span><br/>
+            </div>
 
 
-        <div class="page-header">
 
 
-        <% current_feed = Feedjira::Feed.fetch_and_parse(Feed.find_by_feed_id(feeds_user.feed_id).url) %>
-        <h1><%= current_feed.title %></h1>
 
-
-        <% if(!current_feed.image.nil?) %>
-            <h2><img src='<%= current_feed.image.split(' ').first %>'></h2>
-        <% end %>
-        </div>
-        <div class="row">
-
-
-        <% current_article = current_feed.entries %>
-        <% current_article[0..11].each do |article| %>
-              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="span4" >
-                <div class="panel panel-primary ">
-
-                      <div class="panel-heading" style="min-height: 115px; max-height: 115px;">
-
-                      <h3 class="panel-title">
-                        <%= article.title.titleize %>
-                      </h3>
-                        <br/>
-                        Date: <%= article.published.strftime("%B %d, %Y") %> <br/>
-                      </div>
-                      <div class="panel-body" style="min-height: 220px; max-height: 220px;">
-
-
-                        <%= sanitize strip_tags(article.summary[0..250]) %>... <br/>
-
-                        <%= link_to "Read full article", article.url %><br/><br/>
-                      </div>
-                    </div>
-                </div>
-              </div>
-
-        <% end %>
+            <div class="panel-body" style="min-height: 180px; max-height: 180px;" >
+              <%=sanitize strip_tags feed[:summary][0..250] %>...
+            </div>
+            <span class="pull-right"><%= link_to "Read full article", feed[:url] %></span><br/><br/>
+          </div>
         </div>
 
-        <div class="btn-group">
-            <%= link_to 'Show More Articles', feeds_user, :class => "btn btn-default" %></a>
-            <%= link_to 'Remove Feed', feeds_user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default" %>
-        </div>
     <% end %>
 
 
