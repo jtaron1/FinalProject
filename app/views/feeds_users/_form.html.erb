@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.label "Website" %><br/>
 
-    <%= f.select(:feed_id, Feed.all.collect { |p| [p.name, Feed.find_by_url(p.url).id]}) %>
+    <%= f.select(:feed_id, Feed.all.collect { |p| [p.name, Feed.find_by_url(p.url).feed_id]}) %>
     <%= f.hidden_field :user_id, {:value => current_user.id} %>
 
   </div>

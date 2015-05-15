@@ -11,10 +11,14 @@
     </div>
   <% end %>
     <%= f.hidden_field :user_id, {:value => current_user.id} %>
-  <div class="field">
-    <%= f.label :twitter_id %><br>
-    <%= f.text_field :twitter_id %>
-  </div>
+    <div class="field">
+      <%= f.label "Twitter Handles" %><br/>
+
+      <%= f.select(:twitter_id, TwitterHandle.all.collect { |p| ['@' + p.twitter_id, TwitterHandle.find_by_twitter_id(p.twitter_id).twitter_id]}) %>
+      <%= f.hidden_field :user_id, {:value => current_user.id} %>
+
+    </div>
+    <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

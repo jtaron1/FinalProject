@@ -5,13 +5,13 @@ class TwitterUsersController < ApplicationController
   # GET /twitter_users
   # GET /twitter_users.json
   def index
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "ZlKRQXJDicbNHXjqIr0dllZsc"
       config.consumer_secret     = "JOh0eAtpdHY0uSsaQbPDUFL8TUYygOtaEwCV6cRQ6y2KXFiK6U"
       config.access_token        = "197092649-CihsuA5dYOZDy86CRxLu9kwDDkvdHfhXQi8xQiIn"
       config.access_token_secret = "UCIHoGPegZn4Pwk2opnsJd22Mu7Aenpgm3fa8ylsJvnrc"
     end
-
 
     twitter_users = TwitterUser.where(user_id: current_user)
 
@@ -26,6 +26,14 @@ class TwitterUsersController < ApplicationController
 
      end
     @all_tweets.shuffle!
+  end
+
+  def retweet
+
+  end
+
+  def favorite
+
   end
 
   # GET /twitter_users/1
