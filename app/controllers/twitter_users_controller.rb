@@ -5,7 +5,7 @@ class TwitterUsersController < ApplicationController
   # GET /twitter_users
   # GET /twitter_users.json
   def index
-    @client = Twitter::REST::Client.new do |config|
+    client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "ZlKRQXJDicbNHXjqIr0dllZsc"
       config.consumer_secret     = "JOh0eAtpdHY0uSsaQbPDUFL8TUYygOtaEwCV6cRQ6y2KXFiK6U"
       config.access_token        = "197092649-CihsuA5dYOZDy86CRxLu9kwDDkvdHfhXQi8xQiIn"
@@ -13,7 +13,19 @@ class TwitterUsersController < ApplicationController
     end
 
 
-    @twitter_users = TwitterUser.where(user_id: current_user)
+    twitter_users = TwitterUser.where(user_id: current_user)
+
+    @all_tweets = []
+
+     twitter_users.each do |twitter_user|
+
+      client.user_timeline(twitter_user.twitter_id)[0..11].each  do |tweet|
+        @all_tweets.push(id:twitter_user.twitter_id, tweet:tweet.full_text,
+                         fav_count:tweet.favorite_count, rt_count:tweet.retweet_count)
+      end
+
+     end
+    @all_tweets.shuffle!
   end
 
   # GET /twitter_users/1
